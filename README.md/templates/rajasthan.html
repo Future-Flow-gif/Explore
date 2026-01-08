@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>rajastan Tourism</title>
+
+
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #e0f7fa, #e8f5e9);
+    }
+
+    h1 {
+        text-align: center;
+        padding: 20px;
+    }
+
+    h2 {
+        padding-left: 30px;
+        margin-top: 50px;
+        position: relative;
+    }
+    h2::after{
+      content:"";
+      display:block;
+      width:80px;
+      height:3px;
+      background:#4db6ac;
+      margin-top: 8px;
+    }
+
+    p {
+        padding: 0 30px 20px;
+        line-height: 1.6;
+    }
+    .img-name {
+      text-align:center;
+      font-size: 14px;
+      margin-top: 6px;
+      font-weight:600;
+      color: #333;
+    }
+
+    /* ===== IMAGE GALLERY ===== */
+    .gallery {
+        display: flex;
+        height: 260px;
+        padding: 10px 30px;
+        gap: 8px;
+    }
+
+    .gallery img {
+        width: 50px;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 2px solid #ffd180;
+        transition: all 0.8s ease-in-out;
+        cursor: pointer;
+        filter: saturate(40%);
+    }
+
+    .gallery img:hover {
+        width: 100%;
+        filter: saturate(100%);
+    }
+    /* ===== Breadcrumb (Common for all place pages) ===== */
+.breadcrumb {
+  padding: 15px 30px;
+  font-size: 15px;
+  background-color: #f5f7fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: rgb(36, 117, 187);
+  font-weight: 600;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: #555;
+  font-weight: bold;
+}
+/* ===== Explore navigation (Common for all place pages) ===== */
+.explore-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60px 30px 140px;
+  flex-wrap: wrap;
+}
+
+.explore-more,
+.explore-next,
+.explore-prev {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: rgb(36, 117, 187);
+  transition: color 0.3s ease;
+}
+
+.explore-more:hover,
+.explore-next:hover,
+.explore-prev:hover {
+  color: rgb(28, 95, 155);
+}
+/* ===== Scroll Controls (Hidden by default) ===== */
+.scroll-controls {
+  position: fixed;           /* 🔑 FIX */
+  bottom: 100px;              /* move to bottom */
+  right: 20px;               /* right corner */
+
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 999;              /* always on top */
+}
+.scroll-controls.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.scroll-controls button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+
+  background-color: rgb(36, 117, 187);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.scroll-controls button:hover {
+  background-color: rgb(28, 95, 155);
+}
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+    <!-- Image Lightbox -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+  <span class="close-btn">×</span>
+</div>
+    <div class="breadcrumb">
+  <a href="/homeaccess">Home</a> ›
+  <span>Rajasthan</span>
+</div>
+<!-- Breadcrumb END -->
+   <div class="scroll-controls" id="scrollControls">
+  <button onclick="startScroll()">↓ Scroll</button>
+  <button onclick="pauseScroll()">⏸ Pause</button>
+  <button onclick="scrollToTop()">↑ Top</button>
+</div>
+
+<h1>🐪 Rajasthan🐪</h1>
+
+<h2>Heritage and Historical Sites</h2>
+<p>
+    Historical and heritage places of Rajasthan are old forts, palaces, temples, and cities
+    that show the royal life, bravery, culture, and traditions of the Rajput kings. These 
+    places are important because they tell stories of battles, kingdoms, architecture, and 
+    ancient lifestyle. They are protected to preserve Rajasthan’s rich history and attract
+    cultural tourism.<br>
+    Amer Fort:Jaipur
+        Amer Fort is a famous hill fort known for its grand palaces and strong walls. It shows the royal life and architecture of Rajasthan.<br>
+    Mehrangarh Fort : Jodhpur
+        Mehrangarh Fort is a massive fort built on a hill. It reflects the power, bravery, and history of Rajput rulers.<br>
+    Chittorgarh Fort : Chittorgarh
+        Chittorgarh Fort is the largest fort in India. It is a symbol of courage, sacrifice, and Rajput pride.<br>
+    Jaisalmer Fort : Jaisalmer
+        Jaisalmer Fort is a living fort made of yellow sandstone. It shows desert culture and ancient trade history.<br>
+    </p>
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj1.jpg') }}" alt="Amber Fort">
+        <p class="img-name">Amber Fort</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj2.jpg') }}" alt="Mehrangarh Fort">
+        <p class="img-name" color="black">Mehrangarh Fort</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj3.jpg') }}" alt="Chittorgarh fort">
+        <p class="img-name">Chittorgarh fort</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj4.jpg') }}" alt="Jaisalmer Fort">
+        <p class="img-name">Jaisalmer Fort</p>
+    </div>
+</div>
+
+<h2>Tradition and Customs</h2>
+<p>
+  The traditions of Rajasthan reflect its royal history and desert culture. People follow
+  traditional dress, celebrate colorful festivals, and practice age-old customs in their
+  daily life. Hospitality and respect for guests are important values in Rajasthani culture,
+  where guests are treated with great honor and warmth.<br>
+  Ghoomar Folk Dance:
+    Ghoomar is a popular folk dance of Rajasthan, performed by women during festivals and celebrations. It represents grace, tradition, and cultural heritage.<br>
+  Traditional Dress & Turban (Safa):
+    Traditional dress and the colorful turban (safa) show the royal identity and cultural pride of Rajasthan. Different colors of turbans have cultural significance.<br>
+  Gangaur Festival:
+    Gangaur is an important festival celebrated mainly by women. It is observed for happiness, prosperity, and a good married life.<br>
+  Traditional Food Culture:
+    The traditional food of Rajasthan includes rich and spicy dishes. The cuisine reflects the desert lifestyle and local traditions.<br>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj5.jpg') }}" alt="Ghoomare folk dance">
+        <p class="img-name">Ghoomare folk dance</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj6.jpg') }}" alt="Traditional dress and turban">
+        <p class="img-name" color="black">Traditional dress and turban</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj7.jpg') }}" alt="Gangaur festival">
+        <p class="img-name">Gangaur festival</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj8.jpg') }}" alt="Traditional food and cuisine">
+        <p class="img-name">Traditional food and cuisine</p>
+    </div>
+</div>
+
+<h2>Festivals and Events</h2>
+<p>
+    Festivals and events of Rajasthan show its rich culture and royal traditions. They are 
+    celebrated with colorful clothes, music, and folk dances. Many festivals are linked to
+    seasons, religion, and local customs, bringing people together with joy and strong community 
+    spirit. These events also attract tourists from across the world and help preserve the cultural
+    heritage of the state.<br>
+    Gangaur Festival:
+        Gangaur is a popular festival celebrated mainly by women. It is observed for happiness, prosperity, and a good married life.<br>
+    Teej Festival:
+        Teej is celebrated during the monsoon season. Women pray for family happiness and celebrate with songs and swings.<br>
+    Pushkar Festival:
+        Pushkar is famous for its camel fair and cultural events. It attracts tourists and shows rural traditions of Rajasthan.<br>
+    Jaisalmer Desert Festival:
+        The Jaisalmer Desert Festival celebrates desert culture with folk music, dance, and camel events. It highlights the beauty of desert life.<br>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj9.jpg') }}" alt="Gangaur festival">
+        <p class="img-name">Gangaur festival</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj10.jpg') }}" alt="Teej festival">
+        <p class="img-name" color="black">Teej festival</p> 
+    </div>
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj11.jpg') }}" alt="Pushkar camel fair">
+        <p class="img-name">Pushkar camel fair</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj12.jpg') }}" alt="Jaisalmer desert festival">
+        <p class="img-name">Jaisalmer desert festival</p>
+    </div>
+</div>
+
+<h2>Folkdance and Music</h2>
+<p>
+    Folk dance and cultural events of Rajasthan reflect its royal history and desert culture.   
+    They are performed during festivals, weddings, and special occasions. Colorful costumes
+    and traditional music make the performances lively and attractive. These dances tell stories
+    of bravery, love, and daily life. They help preserve cultural heritage and attract tourists.<br>
+    Ghoomar:
+         Ghoomar is a traditional folk dance performed by women during festivals and celebrations. It shows grace, elegance, and royal culture.<br>
+    Kalbelia:
+        Kalbelia is a lively folk dance performed by the Kalbelia community. It is known for fast movements and snake-like dance steps.<br>
+    Manganiyar Folk Music:
+        Manganiyar folk music is performed by traditional musician communities. It reflects devotion, history, and desert life through songs.<br>
+    Langas Folk Music:
+        Langas folk music is a classical folk tradition of Rajasthan. It is usually performed during cultural events and ceremonies.<br>
+    </p>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj13.jpg') }}" alt="Ghoomare folk dance">
+        <p class="img-name">Ghoomare folk dance</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj14.jpg') }}" alt="Kalbelia dance">
+        <p class="img-name" color="black">Kalbelia dance</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj15.jpg') }}" alt="Manganiyar folk music">
+        <p class="img-name">Manganiyar folk music</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj16.jpg') }}" alt="Langas dance">
+        <p class="img-name">Langas dance</p>
+    </div>
+</div>
+<h2>Traditional Food and Cuisine</h2>
+<p>
+    Traditional food and cuisine refer to local dishes and cooking styles passed down 
+    through generations. These foods are prepared using local ingredients, spices, and 
+    traditional methods. They reflect the culture, climate, and lifestyle of a region. 
+    Traditional cuisine also plays an important role in festivals and daily life.<br>
+    Dal Baati Churma:
+        Dal Baati Churma is the most famous dish of Rajasthan. It includes baked wheat balls served with lentils and sweet churma.<br>
+    Gatte ki Sabzi:
+        Gatte ki Sabzi is made using gram flour dumplings cooked in a spicy curry. It is popular because it needs less water.<br>
+    Ker Sabzi:
+        KerSabzi is a traditional desert dish made from dried berries and beans. It reflects the desert lifestyle of Rajasthan.<br>
+    Ghewar:
+       Ghewar is a popular traditional sweet of Rajasthan. It is mainly prepared during festivals and special occasions.<br>
+    </p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj17.jpg') }}" alt="Dal bati churma">
+        <p class="img-name">Dal bati churma</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj18.jpg') }}" alt="Gatte ki sabji">
+        <p class="img-name" color="black">Gatte ki sabji</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj19.jpg') }}" alt="Ker sangri">
+        <p class="img-name">Ker sangri</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj20.jpg') }}" alt="Ghewar">
+        <p class="img-name">Ghewar</p>
+    </div>
+</div>
+
+<h2>Handcrafts and Cultural Art Forms</h2>
+<p>
+    Handicrafts and art forms of Rajasthan reflect its royal heritage and 
+    artistic skills. They are created using traditional methods passed down
+    through generations. Popular crafts include paintings, pottery, textiles, 
+    and jewelry. These art forms help preserve cultural heritage and support 
+    local artisans.<br>
+    Blue Pottery:
+        Blue pottery is a famous craft of Jaipur. It is known for its blue designs and decorative patterns.<br>
+    Block Painting (Block Printing):
+        Block painting uses hand-carved wooden blocks on fabric. It creates beautiful traditional textile designs.<br>
+    Miniature Painting:
+        Miniature painting is a detailed art form that shows royal life and historical stories. It uses natural colors and fine brushwork.<br>
+    Leather Craft:
+        Leather craft includes handmade shoes, bags, and accessories. It reflects traditional skills and daily life needs.<br>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj21.jpg') }}" alt="Blue pottery">
+        <p class="img-name">Blue pottery</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj22.jpg') }}" alt="Miniature painting">
+        <p class="img-name" color="black">Miniature painting </p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj23.jpg') }}" alt="Leather craft">
+        <p class="img-name">Leather craft</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/raj24.jpg') }}" alt="Kathputli">
+        <p class="img-name">Kathputli</p>
+    </div>
+</div>
+<div class="explore-navigation">
+  <a href="/punjab" class="explore-prev">← Previous</a>
+  <a href="/tamilnadu" class="explore-next">
+    Next →
+  </a>
+</div>
+<script>
+let scrollInterval = null;
+const controls = document.getElementById("scrollControls");
+
+/* Show buttons only after scrolling */
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 200) {
+    controls.classList.add("show");
+  } else {
+    controls.classList.remove("show");
+  }
+});
+
+function startScroll() {
+  if (scrollInterval) return;
+
+  scrollInterval = setInterval(() => {
+    window.scrollBy(0, 3);
+
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+      pauseScroll();
+    }
+  }, 10);
+}
+
+function pauseScroll() {
+  clearInterval(scrollInterval);
+  scrollInterval = null;
+}
+
+function scrollToTop() {
+  pauseScroll();
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+// Lightbox functions
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+document.querySelectorAll(".gallery img").forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+  });
+});
+
+function closeLightbox() {
+  lightbox.style.display = "none";
+}
+</script>
+</body>
+</html>

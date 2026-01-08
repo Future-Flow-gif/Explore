@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kerala Tourism</title>
+
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #e0f7fa, #e8f5e9);
+    }
+
+    h1 {
+        text-align: center; 
+        padding: 20px;
+    }
+    h2 {
+        padding-left: 30px;
+        margin-top: 50px;
+        position: relative;
+    }
+    h2::after{
+      content:"";
+      display:block;
+      width:80px;
+      height:3px;
+      background:#4db6ac;
+      margin-top: 8px;
+    }
+
+
+    p {
+        padding: 0 30px 20px;
+        line-height: 1.6;
+    }
+    .img-name {
+      text-align:center;
+      font-size: 14px;
+      margin-top: 6px;
+      font-weight:600;
+      color: #333;
+    }
+
+    /* ===== IMAGE GALLERY ===== */
+    .gallery {
+        display: flex;
+        height: 260px;
+        padding: 10px 30px;
+        gap: 8px;
+    }
+
+    .gallery img {
+        width: 50px;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 2px solid #ffd180;
+        transition: all 0.8s ease-in-out;
+        cursor: pointer;
+        filter: saturate(100%);
+    }
+
+    .gallery img:hover {
+        width:100%;
+        filter: saturate(100%);
+    }
+    /* ===== Breadcrumb (Common for all place pages) ===== */
+.breadcrumb {
+  padding: 15px 30px;
+  font-size: 15px;
+  background-color: #f5f7fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: rgb(36, 117, 187);
+  font-weight: 600;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: #555;
+  font-weight: bold;
+}
+/* ===== Explore navigation (Common for all place pages) ===== */
+.explore-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60px 30px 140px;
+  flex-wrap: wrap;
+}
+
+.explore-more,
+.explore-next,
+.explore-prev {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: rgb(36, 117, 187);
+  transition: color 0.3s ease;
+}
+
+.explore-more:hover,
+.explore-next:hover,
+.explore-prev:hover {
+  color: rgb(28, 95, 155);
+}
+/* ===== Scroll Controls (Hidden by default) ===== */
+.scroll-controls {
+  position: fixed;           /* 🔑 FIX */
+  bottom: 100px;              /* move to bottom */
+  right: 20px;               /* right corner */
+
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 999;              /* always on top */
+}
+.scroll-controls.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.scroll-controls button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+
+  background-color: rgb(36, 117, 187);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.scroll-controls button:hover {
+  background-color: rgb(28, 95, 155);
+}
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+    <!-- Image Lightbox -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+  <span class="close-btn">×</span>
+</div>
+    <div class="breadcrumb">
+  <a href="/homeaccess">Home</a> ›
+  <span>Kerala</span>
+</div>
+<!-- Breadcrumb END -->
+   <div class="scroll-controls" id="scrollControls">
+  <button onclick="startScroll()">↓ Scroll</button>
+  <button onclick="pauseScroll()">⏸ Pause</button>
+  <button onclick="scrollToTop()">↑ Top</button>
+</div>
+<h1>🌴 Kerala🌴</h1>
+
+<h2>Heritage and Historical Sites</h2>
+<p>
+    Historical and heritage places of Kerala include ancient temples, forts, palaces, 
+    churches, and old towns that show the culture, traditions, and history of the region. 
+    These places reflect the royal life of kings, early trade, religious harmony, and 
+    traditional architecture. They are important because they tell stories of Kerala’s 
+    past, including ancient civilizations, colonial rule, and cultural development. 
+    These sites are protected to preserve Kerala’s rich heritage and to promote cultural 
+    tourism.<br>
+    Mattancherry Palace : Kochi, Kerala:
+        Mattancherry Palace is a historic palace famous for its beautiful murals and royal artifacts. It shows the cultural and royal life of old Kerala.<br>
+
+    Bekal Fort : Kasaragod, Kerala:
+        Bekal Fort is a large sea-side fort built for defense. It reflects Kerala’s military history and traditional fort architecture.<br>
+
+    Padmanabhapuram Palace : Thiruvananthapuram, Kerala:
+        Padmanabhapuram Palace is a grand wooden palace of the Travancore kings. It shows traditional Kerala architecture and royal lifestyle.<br>
+
+    Muziris :Kodungallur, Kerala:
+        Muziris is an ancient port city known for early trade with other countries. It shows Kerala’s rich history of commerce, culture, and religious harmony.<br>
+
+    </p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala1.jpg') }}" alt="Mattancherry Palace">
+        <p class="img-name">Mattancherry Palace</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala2.jpg') }}" alt="Bekal Fort">
+        <p class="img-name" color="black">Bekal Fort</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala3.jpg') }}" alt="Padmanabhapuram ">
+        <p class="img-name">Padmanabhapuram </p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala4.jpg') }}" alt="Muziris">
+        <p class="img-name">Muziris</p>
+    </div>
+</div>
+
+<h2>Tradition and Customs</h2>
+<p>
+    Kerala has a rich tradition and strong customs influenced by its history and culture. 
+    People follow simple living and respect elders and family values. Traditional dress 
+    like Kasavu saree for women and mundu for men is commonly worn during festivals and 
+    special occasions. Festivals such as Onam and Vishu are celebrated with rituals, 
+    floral decorations, and traditional food. Respect for all religions and cultural 
+    harmony is an important custom in Kerala.<br>
+    Onam:
+       Onam is the biggest festival of Kerala, celebrated to welcome King Mahabali. It is marked by floral designs (Pookalam), boat races, traditional dances, and the Onam Sadhya feast.<br>
+    Vishukkani Rituals:
+       Vishukkani is a New Year ritual where people see auspicious items like flowers, rice, coins, and lamps first thing in the morning for good luck.<br>
+    Kathakali Dance:
+       Kathakali is a famous classical dance of Kerala known for colorful costumes, detailed makeup, and storytelling through expressions and gestures.<br>
+    Theyyam:
+       Theyyam is a traditional ritual art form where performers dress as gods or spirits. It is mainly performed in North Kerala and reflects ancient beliefs and customs.<br>
+</p>
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala5.jpg') }}" alt="Onam">
+        <p class="img-name">Onam</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala6.jpg') }}" alt="Vishukkani Rituals">
+        <p class="img-name" color="black">Vishukkani Rituals</p> 
+    </div>
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala7.jpg') }}" alt=" Kathakali Dance">
+        <p class="img-name"> Kathakali Dance</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala8.jpg') }}" alt="Theyyam">
+        <p class="img-name">Theyyam</p>
+    </div>
+</div>
+<h2>Festivals and Events</h2>
+<p>
+    Kerala celebrates many colorful festivals that reflect its rich culture and traditions. 
+    Onam is the most important festival, celebrated with flower designs, boat races, and the 
+    grand Onam Sadhya feast. Vishu marks the Malayalam New Year and is celebrated with the 
+    Vishukkani ritual. Thrissur Pooram is a famous temple festival known for decorated 
+    elephants and fireworks. Attukal Pongala is a major women’s festival, while Christmas 
+    and Eid are also celebrated, showing religious harmony in Kerala.<br>
+    Onam:
+        Onam is the most important festival of Kerala, celebrated to welcome King Mahabali. It includes Pookalam, boat races, traditional dances, and the Onam Sadhya.<br>
+   Vishu:
+       Vishu marks the Malayalam New Year and is celebrated with the Vishukkani ritual. People believe seeing auspicious items brings good luck for the year.<br>
+    Thrissur Pooram:
+       Thrissur Pooram is a famous temple festival known for decorated elephants, traditional music, and grand fireworks.<br>
+    Attukal Pongala:
+       Attukal Pongala is a unique women’s festival where millions of women offer Pongala to the Attukal Amma temple.<br>
+
+</p>
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala9.jpg') }}" alt="Onam">
+        <p class="img-name">Onam</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala10.jpg') }}" alt="Vishu">
+        <p class="img-name">Vishu</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala11.jpg') }}" alt="Thrissur Pooram">
+        <p class="img-name">Thrissur Pooram</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala12.jpg') }}" alt="Attukal Pongala">
+        <p class="img-name">Attukal Pongala</p>
+    </div>
+</div>
+
+<h2>Folkdance and Music</h2>
+<p>
+    Kerala has many traditional dances and music forms. Kathakali is a 
+    dance-drama with colorful costumes. Mohiniyattam is a graceful dance 
+    performed by women. Thiruvathirakali is done in groups during festivals. 
+    Theyyam is a ritual dance representing gods. Folk songs like vanchipattu 
+    accompany dances and celebrations.<br>
+    Kathakali:
+       Kathakali is a classical dance-drama with colorful costumes and expressive gestures that tell stories from epics.<br>
+    Mohiniyattam:
+        Mohiniyattam is a graceful dance performed by women, known for slow, elegant movements.<br>
+    Koodiyattam:
+        Koodiyattam is an ancient Sanskrit theatre tradition performed in temples, combining acting, music, and gestures.<br>
+    Theyyam:
+        Theyyam is a ritual dance where performers dress as gods or spirits, mainly in North Kerala, reflecting traditional beliefs.<br>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala13.jpg') }}" alt=" Kathakali">
+        <p class="img-name"> Kathakali</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala14.jpg') }}" alt="Mohiniyattam">
+        <p class="img-name" color="black">Mohiniyattam</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala16.jpg') }}" alt="Koodiyattam">
+        <p class="img-name">Koodiyattam</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala17.jpg') }}" alt="Theyyam">
+        <p class="img-name">Theyyam</p>
+    </div>
+</div>
+<h2>Traditional Food and Cuisine</h2>
+<p>
+    Kerala is famous for spicy and flavorful food. Sadhya, served on banana 
+    leaves, is a traditional feast with rice, curries, and payasam. Popular 
+    dishes include appam with stew, puttu with kadala curry, and seafood like 
+    fish and prawn curry. Kerala cuisine reflects local ingredients and 
+    traditional cooking.<br>
+    Sadya:
+       Sadya is a traditional feast served on a banana leaf, including rice, vegetables, curries, and payasam, usually during festivals like Onam.<br>
+    Appam and Stew:
+       Appam is a soft, lacy rice pancake served with a mild vegetable or meat stew.<br>
+    Puttu and Kadala Curry:
+       Puttu is steamed rice flour with coconut, served with spicy black chickpea curry called kadala curry.<br>
+    Karimeen Pollichathu:
+        Karimeen Pollichathu is a popular Kerala fish dish, where pearl spot fish is marinated, wrapped in banana leaf, and grilled.<br>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala18.jpg') }}" alt="Sadya">
+        <p class="img-name">Sadya</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala19.jpg') }}" alt="Appam and Stew">
+        <p class="img-name" color="black">Appam and Stew</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala20.jpg') }}" alt="Puttu and Kadala Curry">
+        <p class="img-name">Puttu and Kadala Curry</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala21.jpg') }}" alt="Karimeen Pollichathu">
+        <p class="img-name">Karimeen Pollichathu</p>
+    </div>
+</div>
+
+<h2>Handcrafts and Cultural Art Forms</h2>
+<p>
+    Kerala is known for traditional handcrafts and arts. Coir products, Aranmula mirrors, 
+    and wood carvings are popular. Mural paintings decorate temples, and Kathakali masks 
+    and costumes are made for performances. These crafts reflect Kerala’s rich culture.<br>
+    Kasavu Saree:
+       Kasavu saree is a traditional Kerala saree with golden borders, worn during festivals and special occasions.<br>
+    Aranmula Mirror:
+       Aranmula mirror is a unique handmade metal mirror, famous for its craftsmanship.<br>
+    Coconut Shell Handcraft:
+       Coconut shells are used to make decorative items, utensils, and souvenirs.<br>
+    Wood Carving and Kathakali Mask:
+       Wood carvings decorate temples and homes, while Kathakali masks are made for classical dance performances.<br>
+
+
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala22.jpg') }}" alt="Kasavu Saree">
+        <p class="img-name">Kasavu Saree</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala23.jpg') }}" alt="Aranmula Mirror">
+        <p class="img-name" color="black">Aranmula Mirror</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala24.jpg') }}" alt=" Coconut Shell Handcraft">
+        <p class="img-name"> Coconut Shell Handcraft</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/kerala25.jpg') }}" alt=" Wood Carving and Kathakali Mask">
+        <p class="img-name"> Wood Carving and Kathakali Mask</p>
+    </div>
+</div>
+<div class="explore-navigation">
+  <a href="/homeaccess" class="explore-more">
+    ← Explore More Places
+  </a>
+
+  <a href="/punjab" class="explore-next">
+    Explore Next → 
+  </a>
+</div>
+<script>
+let scrollInterval = null;
+const controls = document.getElementById("scrollControls");
+
+/* Show buttons only after scrolling */
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 200) {
+    controls.classList.add("show");
+  } else {
+    controls.classList.remove("show");
+  }
+});
+
+function startScroll() {
+  if (scrollInterval) return;
+
+  scrollInterval = setInterval(() => {
+    window.scrollBy(0, 3);
+
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+      pauseScroll();
+    }
+  }, 10);
+}
+
+function pauseScroll() {
+  clearInterval(scrollInterval);
+  scrollInterval = null;
+}
+
+function scrollToTop() {
+  pauseScroll();
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+// Lightbox functions
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+document.querySelectorAll(".gallery img").forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+  });
+});
+
+function closeLightbox() {
+  lightbox.style.display = "none";
+}
+</script>
+</body>
+</html> 

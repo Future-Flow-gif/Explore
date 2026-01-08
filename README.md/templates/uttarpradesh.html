@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>utter pradesh Tourism</title>
+
+
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #e0f7fa, #e8f5e9);
+    }
+
+    h1 {
+        text-align: center;
+        padding: 20px;
+    }
+
+    h2 {
+        padding-left: 30px;
+        margin-top: 50px;
+        position: relative;
+    }
+    h2::after{
+      content:"";
+      display:block;
+      width:80px;
+      height:3px;
+      background:#4db6ac;
+      margin-top: 8px;
+    }
+
+    p {
+        padding: 0 30px 20px;
+        line-height: 1.6;
+    }
+    .img-name {
+      text-align:center;
+      font-size: 14px;
+      margin-top: 6px;
+      font-weight:600;
+      color: #333;
+    }
+
+    /* ===== IMAGE GALLERY ===== */
+    .gallery {
+        display: flex;
+        height: 260px;
+        padding: 10px 30px;
+        gap: 8px;
+    }
+
+    .gallery img {
+        width: 50px;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 2px solid #ffd180;
+        transition: all 0.8s ease-in-out;
+        cursor: pointer;
+        filter: saturate(40%);
+    }
+
+    .gallery img:hover {
+        width: 100%;
+        filter: saturate(100%);
+    }
+    /* ===== Breadcrumb (Common for all place pages) ===== */
+.breadcrumb {
+  padding: 15px 30px;
+  font-size: 15px;
+  background-color: #f5f7fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: rgb(36, 117, 187);
+  font-weight: 600;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: #555;
+  font-weight: bold;
+}
+/* ===== Explore navigation (Common for all place pages) ===== */
+.explore-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ margin: 60px 30px 140px;
+  flex-wrap: wrap;
+}
+
+.explore-more,
+.explore-next,
+.explore-prev {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: rgb(36, 117, 187);
+  transition: color 0.3s ease;
+}
+
+.explore-more:hover,
+.explore-next:hover,
+.explore-prev:hover {
+  color: rgb(28, 95, 155);
+}
+/* ===== Scroll Controls (Hidden by default) ===== */
+.scroll-controls {
+  position: fixed;           /* 🔑 FIX */
+  bottom: 100px;              /* move to bottom */
+  right: 20px;               /* right corner */
+
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 999;              /* always on top */
+}
+.scroll-controls.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.scroll-controls button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+
+  background-color: rgb(36, 117, 187);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.scroll-controls button:hover {
+  background-color: rgb(28, 95, 155);
+}
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+    <!-- Image Lightbox -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+  <span class="close-btn">×</span>
+</div>
+    <div class="breadcrumb">
+  <a href="/homeaccess">Home</a> ›
+  <span>Uttar Pradesh</span>
+</div>
+<!-- Breadcrumb END -->
+   <div class="scroll-controls" id="scrollControls">
+  <button onclick="startScroll()">↓ Scroll</button>
+  <button onclick="pauseScroll()">⏸ Pause</button>
+  <button onclick="scrollToTop()">↑ Top</button>
+</div>
+
+<h1>🕌 Utterpradesh 🕌</h1>
+
+<h2>Heritage and Historical Sites</h2>
+<p>
+    Historical and heritage places of Uttar Pradesh are monuments, forts, cities,
+    and religious sites that are important because of their historical events,
+    rulers, culture, and architecture. These places show the Mughal, Nawabi, and 
+    ancient Indian history of the state. They are preserved to protect cultural 
+    heritage and attract tourists from all over the world.<br>
+    Taj Mahal : Agra:
+        The Taj Mahal is a white marble monument built as a symbol of love. It is one of the most famous heritage sites in the world.<br>
+    Agra Fort : Agra:
+       Agra Fort is a strong red sandstone fort built by Mughal emperors. It shows royal life and Mughal architecture.<br>
+    Fatehpur Sikri :Agra:
+       Fatehpur Sikri is a historic city built by Emperor Akbar. It reflects Mughal planning and culture.<br>
+    Bara Imambara : Lucknow:
+       Bara Imambara is a famous monument known for its unique architecture. It represents Nawabi culture and history.<br>
+
+   </p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up1.jpg') }}" alt="Taj mahal">
+        <p class="img-name">Taj mahal</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up2.jpg') }}" alt="Fatehpur sikri">
+        <p class="img-name" color="black">Fatehpur sikri</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up3.jpg') }}" alt="Bara imambara">
+        <p class="img-name">Bara imambara</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up4.jpg') }}" alt="Sarnath">
+        <p class="img-name">Sarnath</p>
+    </div>
+</div>
+
+<h2>Tradition and Customs</h2>
+<p>
+    The traditions and customs of Uttar Pradesh are deeply rooted in religion, 
+    history, and culture. The state follows age-old practices related to festivals, 
+    dress, food, and social life. Religious rituals and celebrations play an important 
+    role in daily life. These traditions reflect unity, devotion, and cultural heritage.<br>
+    Religious Rituals & Pilgrimages:
+        Uttar Pradesh is a major center for religious rituals and pilgrimages. Many people visit holy places and follow traditional worship practices.<br>
+    Traditional Attire:
+        Traditional attire includes sarees for women and dhoti-kurta or kurta-pajama for men. Clothing reflects simplicity and cultural values.<br>
+    Folk Arts & Music:
+        Folk arts and music play an important role in cultural life. Dance forms like Kathak and folk songs are widely performed.<br>
+    Festivals & Celebrations:
+        Festivals such as Diwali, Holi, and Kumbh Mela are celebrated with great devotion. These celebrations bring people together and reflect cultural unity.<br>
+
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up5.jpg') }}" alt="Religious Rituals & Pilgrimages">
+        <p class="img-name">Religious Rituals & Pilgrimages</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up6.jpg') }}" alt="Traditional Attire">
+        <p class="img-name" color="black">Traditional Attire</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up7.jpg') }}" alt="Folk Arts & Music">
+        <p class="img-name">Folk Arts & Music</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up8.jpg') }}" alt="Festivals & Celebrations">
+        <p class="img-name">Festivals & Celebrations</p>
+    </div>
+</div>
+
+<h2>Festivals and Events</h2>
+<p>
+    Festivals and events of Uttar Pradesh reflect deep religious faith and 
+    rich cultural heritage. Many celebrations are connected to temples, pilgrimages, 
+    and historical traditions. People celebrate festivals with rituals, prayers, 
+    music, and joy. These events strengthen community bonding and cultural unity. 
+    They also attract pilgrims and tourists from across the world.<br>
+    Kumbh Mela:
+       Kumbh Mela is one of the largest religious gatherings in the world. Pilgrims take holy baths in sacred rivers to wash away sins.<br>
+    Diwali in Ayodhya:
+       Diwali in Ayodhya is celebrated grandly with lakhs of oil lamps. It marks the return of Lord Rama and shows deep religious devotion.<br>
+    Holi:
+       Holi is the festival of colors celebrated with joy and unity. People play with colors, sing, and share sweets.<br>
+    Rama Navami:
+        Rama Navami celebrates the birth of Lord Rama, symbolizing truth, righteousness, and victory of good over evil.<br>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up9.jpg') }}" alt=" Kumbh Mela">
+        <p class="img-name"> Kumbh Mela</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up10.jpg') }}" alt="Diwali in Ayodhya">
+        <p class="img-name" color="black">Diwali in Ayodhya</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up11.jpg') }}" alt="Holi">
+        <p class="img-name">Holi</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up12.jpg') }}" alt="Rama Navami">
+        <p class="img-name">Rama Navami</p>
+    </div>
+</div>
+
+<h2>Folkdance and Music</h2>
+<p>
+    Folk dance and cultural events of Uttar Pradesh reflect its religious traditions, 
+    history, and cultural diversity. Dance and music are performed during festivals, 
+    religious occasions, and social events. Storytelling through dance and songs is 
+    an important feature of these art forms. These cultural events help preserve 
+    traditions and bring communities together.<br>
+    Kathak:
+        Kathak is a classical dance form that originated in Uttar Pradesh. It uses graceful movements and expressions to tell stories.<br>
+    Ramleela:
+        Ramleela is a traditional dramatic performance based on the life of Lord Rama. It is performed during festivals, especially Dussehra.<br>
+    Nautanki:
+        Nautanki is a popular folk theatre form of Uttar Pradesh. It combines music, drama, and storytelling to entertain people.<br>
+    Raslila:
+       Raslila is a devotional dance drama related to Lord Krishna. It is performed mainly during religious festivals and celebrations.<br>
+       
+    </p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up13.jpg') }}" alt=" Kathak">
+        <p class="img-name"> Kathak</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up14.jpg') }}" alt="Ramleela">
+        <p class="img-name" color="black">Ramleela</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up15.jpg') }}" alt="Nautanki">
+        <p class="img-name">Nautanki</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up16.jpg') }}" alt="Raslila">
+        <p class="img-name">Raslila</p>
+    </div>
+</div>
+<h2>Traditional Food and Cuisine</h2>
+<p>
+    Traditional food and cuisine of Uttar Pradesh reflect its rich culture 
+    and royal history. The food is strongly influenced by Mughal and Awadhi 
+    cooking styles. Both vegetarian and non-vegetarian dishes are popular 
+    across the state. Traditional cuisine plays an important role in festivals 
+    and family gatherings.<br>
+    Awadhi Cuisine:
+        Awadhi cuisine comes from Lucknow and is known for its rich taste. It uses slow cooking and mild spices.<br>
+    Galouti Kebab:
+        Galouti Kebab is a famous soft kebab from Lucknow. It is known for its smooth texture and rich flavor.<br>
+    Awadhi Biryani:
+        Awadhi Biryani is a traditional rice dish cooked with spices and meat. It reflects royal Mughal influence.<br>
+    Kachori served with Chole:
+        Kachori served with chole is a popular Indian street food, loved for its crispy texture and spicy, flavorful chickpea curry<br>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up17.jpg') }}" alt="Awadhi Biryani">
+        <p class="img-name">Awadhi Biryani</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up18.jpg') }}" alt="Galouti Kebab">
+        <p class="img-name" color="black">Galouti Kebab</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up19.jpg') }}" alt="Agra Petha">
+        <p class="img-name">Agra Petha</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up20.jpg') }}" alt="Kachori served with Chole">
+        <p class="img-name">Kachori served with Chole</p>
+    </div>
+</div>
+
+<h2>Handcrafts and Cultural Art Forms</h2>
+<p>
+    Handicrafts and art forms of Uttar Pradesh reflect its rich cultural history 
+    and skilled craftsmanship. These crafts are created using traditional techniques 
+    passed down through generations. The state is known for embroidery, weaving, 
+    metal work, and pottery. These art forms help preserve cultural heritage and 
+    provide livelihood to artisans.<br>
+    Banarasi Silk:
+        Banarasi silk is famous for its rich fabric and fine designs. It is mainly used to make traditional sarees.<br>
+    Chikankari Embroidery:
+        Chikankari embroidery is a delicate hand embroidery from Lucknow. It is known for its elegant floral patterns.<br>
+    Brassware & Metal Crafts:
+        Brassware and metal crafts are popular in Uttar Pradesh. They include decorative and household items made by skilled artisans.<br>
+    Zardozi Embroidery:
+        Zardozi embroidery is a royal art using gold and silver threads. It is used on wedding and festive clothes.<br>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up21.jpg') }}" alt="Banarasi Silk">
+        <p class="img-name">Banarasi Silk</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up22.jpg') }}" alt="Chikankari Embroidery">
+        <p class="img-name" color="black">Chikankari Embroidery</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up23.jpg') }}" alt="Brassware & Metal Crafts">
+        <p class="img-name">Brassware & Metal Crafts</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/up24.jpg') }}" alt="Zardozi Embroidery">
+        <p class="img-name">Zardozi Embroidery</p>
+    </div>
+</div>
+<div class="explore-navigation">
+  <a href="/tamilnadu" class="explore-prev">
+    ← Previous
+  </a>
+  <a href="/uttarakhand" class="explore-next">
+    Next →
+  </a>
+</div>
+<script>
+let scrollInterval = null;
+const controls = document.getElementById("scrollControls");
+
+/* Show buttons only after scrolling */
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 200) {
+    controls.classList.add("show");
+  } else {
+    controls.classList.remove("show");
+  }
+});
+
+function startScroll() {
+  if (scrollInterval) return;
+
+  scrollInterval = setInterval(() => {
+    window.scrollBy(0, 3);
+
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+      pauseScroll();
+    }
+  }, 10);
+}
+
+function pauseScroll() {
+  clearInterval(scrollInterval);
+  scrollInterval = null;
+}
+
+function scrollToTop() {
+  pauseScroll();
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+// Lightbox functions
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+document.querySelectorAll(".gallery img").forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+  });
+});
+
+function closeLightbox() {
+  lightbox.style.display = "none";
+}
+</script>
+</body>
+</html>

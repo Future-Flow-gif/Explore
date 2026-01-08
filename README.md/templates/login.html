@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LOGIN - Explore Bharat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url("{{ url_for('static', filename='back2.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        nav {
+            background: brown;
+            padding: 14px 30px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        nav ul li a:hover {
+            border-bottom: 2px solid #D4AF37;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #f5e6d3;
+            min-width: 190px;
+            display: none;
+            z-index: 100000;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+        }
+        
+        .dropdown-content a {
+            display: block;
+            padding: 12px 16px;
+            color: black;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgb(36, 117, 187);
+            color: white;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .form-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        form {
+            background: beige;
+            border-radius: 10px;
+            padding: 35px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 450px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 36px;
+            color: #333;
+        }
+        
+        .flash-message {
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .flash-message.error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef5350;
+        }
+        
+        .flash-message.success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #66bb6a;
+        }
+        
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #4a6fa5;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+        
+        .remember-forgot a {
+            color: #4a6fa5;
+            text-decoration: none;
+        }
+        
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+        
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #3b5d8a;
+            transform: translateY(-2px);
+        }
+        
+        .signup {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .signup a {
+            color: #4a6fa5;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .signup a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            background-color: brown;
+            color: white;
+            padding: 30px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-link:hover {
+            color: #ff5722;
+        }
+        
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li class="dropdown">
+                <a href="#">Places ▾</a>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('kerala') }}">Kerala</a>
+                    <a href="{{ url_for('punjab') }}">Punjab</a>
+                    <a href="{{ url_for('rajasthan') }}">Rajasthan</a>
+                    <a href="{{ url_for('tamilnadu') }}">Tamil Nadu</a>
+                    <a href="{{ url_for('uttarpradesh') }}">Uttar Pradesh</a>
+                    <a href="{{ url_for('uttarakhand') }}">Uttarakhand</a>
+                </div>
+            </li>
+            <li><a href="{{ url_for('register') }}">Signup</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="form-container">
+        <form method="POST" action="{{ url_for('login') }}">
+            <h1>Login</h1>
+
+            
+          
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <div class="remember-forgot">
+                <label><input type="checkbox" name="remember"> Remember me</label>
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <button type="submit">Login</button>
+
+            <div class="signup">
+                <p>Don't have an account? <a href="{{ url_for('register') }}">Signup please</a></p>
+            </div>
+        </form>
+    </div>
+
+    <div class="footer">
+        <div>
+            <a href="https://www.google.com/maps/place/Odalarevu,+Andhra+Pradesh+533210/@16.4265525,81.9542679,14z/data" target="_blank">
+                📍 Odalarevu, Andhra Pradesh, India
+            </a>
+        </div>
+        <div>
+            <a href="mailto:explorebharat25@gmail.com" class="contact-link">
+                <img src="{{ url_for('static', filename='email.jpg') }}" class="icon" alt="Email">
+                <span>explorebharat25@gmail.com</span>
+            </a><br><br>
+            <a href="https://wa.me/919959264468" target="_blank" class="contact-link">
+                <img src="{{ url_for('static', filename='call.jpg') }}" class="icon" alt="Phone">
+                <span>+91 9959264468</span>
+            </a><br><br>
+            <a href="https://www.instagram.com/explorebharat25/" target="_blank" class="contact-link">
+                <img src="{{ url_for('static', filename='insta.jpg') }}" class="icon" alt="Instagram">
+                <span>explorebharat25</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

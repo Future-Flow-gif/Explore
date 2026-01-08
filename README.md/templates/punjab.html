@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>punjab Tourism</title>
+
+
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #e0f7fa, #e8f5e9);
+    }
+
+    h1 {
+        text-align: center;
+        padding: 20px;
+    }
+    h2 {
+        padding-left: 30px;
+        margin-top: 50px;
+        position: relative;
+    }
+    h2::after{
+      content:"";
+      display:block;
+      width:80px;
+      height:3px;
+      background:#4db6ac;
+      margin-top: 8px;
+    }
+
+    p {
+        padding: 0 30px 20px;
+        line-height: 1.6;
+    }
+    .img-name {
+      text-align:center;
+      font-size: 14px;
+      margin-top: 6px;
+      font-weight:600;
+      color: #333;
+    }
+
+    /* ===== IMAGE GALLERY ===== */
+    .gallery {
+        display: flex;
+        height: 260px;
+        padding: 10px 30px;
+        gap: 8px;
+    }
+
+    .gallery img {
+        width: 50px;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 2px solid #ffd180;
+        transition: all 0.8s ease-in-out;
+        cursor: pointer;
+        filter: saturate(40%);
+    }
+
+    .gallery img:hover {
+        width: 100%;
+        filter: saturate(100%);
+    }
+    /* ===== Breadcrumb (Common for all place pages) ===== */
+.breadcrumb {
+  padding: 15px 30px;
+  font-size: 15px;
+  background-color: #f5f7fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: rgb(36, 117, 187);
+  font-weight: 600;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: #555;
+  font-weight: bold;
+}
+/* ===== Explore navigation (Common for all place pages) ===== */
+.explore-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60px 30px 140px;
+  flex-wrap: wrap;
+}
+
+.explore-more,
+.explore-next,
+.explore-prev {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: rgb(36, 117, 187);
+  transition: color 0.3s ease;
+}
+
+.explore-more:hover,
+.explore-next:hover,
+.explore-prev:hover {
+  color: rgb(28, 95, 155);
+}
+/* ===== Scroll Controls (Hidden by default) ===== */
+.scroll-controls {
+  position: fixed;           /* 🔑 FIX */
+  bottom: 100px;              /* move to bottom */
+  right: 20px;               /* right corner */
+
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 999;              /* always on top */
+}
+.scroll-controls.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.scroll-controls button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+
+  background-color: rgb(36, 117, 187);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.scroll-controls button:hover {
+  background-color: rgb(28, 95, 155);
+}
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+    <!-- Image Lightbox -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+  <span class="close-btn">×</span>
+</div>
+    <div class="breadcrumb">
+  <a href="/home">Home</a> ›
+  <a href="/home#places">Places</a> ›
+  <span>Punjab</span>
+</div>
+<!-- Breadcrumb END -->
+   <div class="scroll-controls" id="scrollControls">
+  <button onclick="startScroll()">↓ Scroll</button>
+  <button onclick="pauseScroll()">⏸ Pause</button>
+  <button onclick="scrollToTop()">↑ Top</button>
+</div>
+
+<h1>🎶 Punjab🎶</h1>
+
+<h2>Heritage and Historical Sites</h2>
+<p>
+    Heritage and historical sites in Punjab are places that preserve the state’s rich 
+    history, religious importance, and cultural legacy. These sites reflect Punjab’s 
+    role in Sikh history, India’s freedom movement, and royal traditions. They help 
+    people understand past events, architecture, and values, and attract visitors from 
+    across the world. These landmarks promote cultural tourism and educate future 
+    generations about Punjab’s identity and heritage. They also contribute to national 
+    pride and the preservation of historical monuments.<br>
+    Golden Temple:
+        The Golden Temple is the holiest shrine of Sikhism and a symbol of peace, equality, and devotion. It is famous for its golden architecture and community kitchen (Langar).<br>
+    Jallianwala Bagh:
+        Jallianwala Bagh is a historic memorial that honors the martyrs of the 1919 massacre during British rule. It represents India’s freedom struggle and sacrifice.<br>
+    Wagah Border:
+        Wagah Border is known for its daily retreat ceremony, showcasing patriotism and discipline. It attracts visitors for its energetic display of national pride.<br>
+    Qila Mubarak:
+        Qila Mubarak is a historic fort in Patiala that reflects royal Punjabi architecture and heritage. It highlights the lifestyle and culture of the Patiala rulers.<br>
+   </p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab1.jpg') }}" alt="Golden Temple">
+        <p class="img-name">Golden Temple</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab2.jpg') }}" alt="Jallianwala Bagh">
+        <p class="img-name" color="black">Jallianwala Bagh</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab3.jpg') }}" alt="Wagah Border">
+        <p class="img-name">Wagah Border</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab4.jpg') }}" alt="Qila Mubarak">
+        <p class="img-name">Qila Mubarak</p>
+    </div>
+</div>
+
+<h2>Tradition and Customs</h2>
+<p>
+    Traditions and customs in Punjab reflect the state’s vibrant culture, strong 
+    community values, and deep-rooted Sikh heritage. They include practices such 
+    as the Langar system (community kitchen), wearing the turban (pagri) as a 
+    symbol of pride, celebrating festivals like Baisakhi, and maintaining a warm, 
+    hospitable lifestyle centered around family, farming, and social unity.<br>
+    Traditional Dress:
+        The traditional dress of Punjab is colorful and comfortable, with men wearing kurta-pajama and turban, and women wearing salwar kameez with phulkari dupatta.<br>
+    Rituals of Punjabi Wedding:
+        Punjabi wedding rituals include Roka, Mehndi, Sangeet, and the sacred Anand Karaj, each symbolizing love, unity, and family bonding.<br>
+    Punjabi Wedding:
+        Punjabi weddings are joyful and energetic celebrations filled with music, bhangra, giddha, and vibrant traditions.<br>
+    Cultural Events:
+        Cultural events in Punjab include festivals like Baisakhi and Lohri, celebrated with folk dances, music, and community gatherings.<br>
+
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab5.jpg') }}" alt=" Traditional Dress">
+        <p class="img-name"> Traditional Dress</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab6.jpg') }}" alt="Rituals of Punjabi Wedding">
+        <p class="img-name" color="black">Rituals of Punjabi Wedding</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab7.jpg') }}" alt="Punjabi Wedding">
+        <p class="img-name">Punjabi Wedding</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab8.jpg') }}" alt="Cultural Events">
+        <p class="img-name">Cultural Events</p>
+    </div>
+</div>
+
+<h2>Festivals and Events</h2>
+<p>
+    Festivals and events are special occasions celebrated by a community to express joy, 
+    culture, religion, and traditions. They bring people together through rituals, music, 
+    dance, and food, helping preserve cultural identity and unity.
+    They also mark seasonal changes, historical events, and religious beliefs. Festivals 
+    promote social harmony and pass cultural values to future generations.<br>
+    Baisakhi:
+        Baisakhi marks the harvest season and Sikh New Year. It is celebrated with bhangra, fairs, and joyful gatherings.<br>
+    Lohri:
+        Lohri is a winter festival celebrated around bonfires. People sing folk songs, dance, and share sweets.<br>
+    Gurpurab:
+        Gurpurab celebrates the birth anniversaries of Sikh Gurus. Devotees visit gurdwaras and participate in prayers and processions.<br>
+    Hola Mohalla:
+        Hola Mohalla showcases Sikh martial skills and bravery. It includes mock battles, processions, and cultural performances.<br>
+
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab11.jpg') }}" alt=" Baisakhi">
+        <p class="img-name"> Baisakhi</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab9.jpg') }}" alt="Lohri">
+        <p class="img-name" color="black">Lohri</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab10.jpg') }}" alt="Gurpurab">
+        <p class="img-name">Gurpurab</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab12.jpg') }}" alt="Hola Mohalla">
+        <p class="img-name">Hola Mohalla</p>
+    </div>
+</div>
+
+<h2>Folkdance and Music</h2>
+<p>
+    Folk dance and music are traditional forms of artistic expression passed down 
+    through generations. They reflect the daily life, emotions, history, and culture 
+    of a community through rhythmic movements, songs, and traditional instruments. 
+    These art forms are commonly performed during festivals, weddings, and cultural 
+    events to express joy and unity. Folk dance and music help preserve cultural 
+    heritage and strengthen the identity of a community.<br>
+    Bhangra:
+        Bhangra is a high-energy folk dance performed during harvest celebrations. It represents joy, strength, and the farming spirit of Punjab.<br>
+    Giddha:
+        Giddha is a traditional women’s dance expressed through claps and folk songs. It reflects daily life, humor, and emotions.<br>
+    Jhumar:
+        Jhumar is a slow and graceful dance performed by men. It shows happiness, harmony, and connection with nature.<br>
+    Kikli:
+        Kikli (often written as Kiliki) is a playful dance performed by young girls. It symbolizes innocence, joy, and friendship.<br> 
+    </p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab13.jpg') }}" alt="Bhangra">
+        <p class="img-name">Bhangra</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab14.jpg') }}" alt="Giddha">
+        <p class="img-name" color="black">Giddha</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab15.jpg') }}" alt="Jhumar">
+        <p class="img-name">Jhumar</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab16.jpg') }}" alt="Kikli">
+        <p class="img-name">Kikli</p>
+    </div>
+</div>
+<h2>Traditional Food and Cuisine</h2>
+<p>
+    Traditional food and cuisine refer to the local dishes and cooking styles of a 
+    region that are passed down through generations, using locally available ingredients 
+    and traditional cooking methods. They reflect the culture, climate, and lifestyle of 
+    the people and are closely connected to festivals, daily life, and family traditions. 
+    Traditional cuisine also represents the identity of a community and plays an important 
+    role in preserving cultural heritage.<br>
+    Makki di Roti:
+        Makki di Roti is a traditional maize flatbread enjoyed mainly in winter. It is usually served with sarson da saag and fresh butter.<br>
+    Butter Chicken:
+        Butter Chicken is a famous Punjabi dish made with grilled chicken cooked in a creamy tomato-based gravy. It is known for its rich flavor and smooth texture.<br>
+    Chole Bhature:
+        Chole Bhature is a popular Punjabi meal consisting of spicy chickpea curry served with deep-fried bread. It is commonly eaten as a breakfast or lunch dish.<br>
+    Dal Makhani:
+        Dal Makhani is a slow-cooked dish made from black lentils and kidney beans. It is creamy, flavorful, and a staple of Punjabi cuisine.<br>
+
+</p>
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab18.jpg') }}" alt="Makki di Roti">
+        <p class="img-name">Makki di Roti</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab19.jpg') }}" alt="  Butter Chicken">
+        <p class="img-name" color="black">  Butter Chicken</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab20.jpg') }}" alt="Chole Bhature">
+        <p class="img-name">Chole Bhature</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab21.jpg') }}" alt="Dal Makhani">
+        <p class="img-name">Dal Makhani</p>
+    </div>
+</div>
+
+<h2>Handcrafts and Cultural Art Forms</h2>
+<p>
+    Handicrafts and art forms are traditional handmade creations made by 
+    skilled artisans using natural materials and age-old techniques. They 
+    reflect the culture, creativity, history, and artistic heritage of a 
+    region and are passed down through generations. These art forms help 
+    preserve cultural identity and traditional skills. They also provide 
+    livelihood opportunities to local artisans and support cultural tourism.<br>
+    Phulkari Embroidery:
+        Phulkari embroidery is a traditional Punjabi craft known for bright colors and floral patterns. It is mainly done on dupattas and shawls using hand stitching.<br>
+    Punjabi Jutti:
+        Punjabi jutti is a handmade leather footwear decorated with embroidery and beads. It represents traditional style and skilled craftsmanship.<br>
+    Wooden Craft:
+        Wooden crafts include carved furniture, toys, and decorative items. They reflect rural artistry and traditional woodworking skills of Punjab.<br>
+    Muday (Mooda):
+        Muday is a traditional handwoven stool made using rope and wood. It is commonly used in Punjabi households and village settings.<br>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab22.jpg') }}" alt="Phulkari Embroidery">
+        <p class="img-name">Phulkari Embroidery</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab23.jpg') }}" alt="Punjabi Jutti">
+        <p class="img-name" color="black">Punjabi Jutti</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab24.jpg') }}" alt=" Wooden Craft">
+        <p class="img-name"> Wooden Craft</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/punjab16.jpg') }}" alt="Muday">
+        <p class="img-name">Muday</p>
+    </div>
+</div>
+<div class="explore-navigation">
+  <a href="/kerala" class="explore-prev">← Previous</a>
+  <a href="/rajasthan" class="explore-next">Next →</a>
+</div>
+<script>
+let scrollInterval = null;
+const controls = document.getElementById("scrollControls");
+
+/* Show buttons only after scrolling */
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 200) {
+    controls.classList.add("show");
+  } else {
+    controls.classList.remove("show");
+  }
+});
+
+function startScroll() {
+  if (scrollInterval) return;
+
+  scrollInterval = setInterval(() => {
+    window.scrollBy(0, 3);
+
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+      pauseScroll();
+    }
+  }, 10);
+}
+
+function pauseScroll() {
+  clearInterval(scrollInterval);
+  scrollInterval = null;
+}
+
+function scrollToTop() {
+  pauseScroll();
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+// Lightbox functions
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+document.querySelectorAll(".gallery img").forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+  });
+});
+
+function closeLightbox() {
+  lightbox.style.display = "none";
+}
+</script>
+</body>
+</html>

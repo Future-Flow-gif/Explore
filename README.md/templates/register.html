@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign Up</title>
+
+    <style>
+        .error { color: red; text-align: center; margin-bottom: 10px; }
+        .success { color: green; text-align: center; margin-bottom: 10px; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url("../static/back2.jpg");
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            background: brown;
+            padding: 14px 30px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 40px;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form {
+            background: beige;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            width: 420px;
+            margin-bottom: 60px;
+        }
+
+        form label {
+            font-weight: bold;
+            display: inline-block;
+            width: 180px;
+        }
+
+        input {
+            padding: 6px;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 8px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .footer {
+            background-color: brown;
+            color: white;
+            height: 120px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('register') }}">Signup</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>Signup Form</h1>
+
+    <!-- ✅ FLASH MESSAGES -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('register') }}" onsubmit="return validateForm()">
+
+        <label>First Name :</label>
+        <input type="text" name="firstName" required minlength="4"><br><br>
+
+        <label>Last Name :</label>
+        <input type="text" name="lastName" required minlength="4"><br><br>
+
+        <label>Email :</label>
+        <input type="email" name="email" required><br><br>
+
+        <label>Password :</label>
+        <input type="password" id="password" name="password" required minlength="4" maxlength="10"><br><br>
+
+        <label>Confirm Password :</label>
+        <input type="password" id="confirmPassword" name="confirm_password" required><br><br>
+
+        <label>Date :</label>
+        <input type="date" name="dob"><br><br>
+
+        <label>Phone :</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required><br><br>
+
+        <button type="submit">Submit</button>
+
+        <p>
+            Already have an account?
+            <a href="{{ url_for('login') }}">Login</a>
+        </p>
+    </form>
+</div>
+
+ <div class="footer">
+            <div class="Address">
+        <a 
+  href="https://www.google.com/maps/place/Odalarevu,+Andhra+Pradesh+533210/@16.4265525,81.9542679,14z/data"
+  target="_blank"
+>
+  📍 Odalarevu, Andhra Pradesh, India
+</a>
+      </div> 
+     <div class="Contact Details">
+
+  <!-- Email -->
+  <a href="mailto:explorebharat25@gmail.com" class="contact-link">
+    <img src="../static/email.jpg" class="icon">
+    <span class="icon_name">explorebharat25@gmail.com</span>
+  </a><br><br>
+
+  <!-- WhatsApp / Call -->
+  <a href="https://wa.me/919959264468" target="_blank" class="contact-link">
+    <img src="../static/call.jpg" class="icon">
+    <span class="icon_name">+91 9959264468</span>
+  </a><br><br>
+
+  <!-- Instagram -->
+  <a href="https://www.instagram.com/explorebharat25/" target="_blank" class="contact-link">
+    <img src="../static/insta.jpg" class="icon">
+    <span class="icon_name">explorebharat25</span>
+  </a>
+
+</div>
+      </div>
+
+<script>
+function validateForm() {
+    const firstName = document.querySelector('input[name="firstName"]').value.trim();
+    const lastName  = document.querySelector('input[name="lastName"]').value.trim();
+    const password  = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    const phone     = document.getElementById("phone").value.trim();
+
+    if (firstName.length < 4) {
+        alert("❌ First name must be at least 4 characters");
+        return false;
+    }
+    if (lastName.length < 4) {
+        alert("❌ Last name must be at least 4 characters");
+        return false;
+    }
+    if (password.length < 4) {
+        alert("❌ Password must be at least 4 characters");
+        return false;
+    }
+    if (password !== confirmPassword) {
+        alert("❌ Password and Confirm Password do not match!");
+        return false;
+    }
+    if (phone.length !== 10 || isNaN(phone)) {
+        alert("❌ Phone number must contain exactly 10 digits!");
+        return false;
+    }
+    return true;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Explore Bharat</title>
+
+<style>
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #FAF7F2;
+}
+
+/* ================= NAVBAR ================= */
+nav {
+  background: linear-gradient(135deg,brown);
+  padding: 14px 30px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #FAF7F2;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+nav ul li a:hover {
+  border-bottom: 2px solid #D4AF37;
+}
+
+/* ================= HERO SECTION ================= */
+.about-hero {
+  min-height: 100vh;
+  background-image: url("../static/back2.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.hero-overlay {
+  min-height: 100vh;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  color: #FAF7F2;
+}
+
+.hero-overlay h1 {
+  font-size: 44px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.hero-overlay p {
+  max-width: 800px;
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 50px;
+}
+
+/* ================= CARDS ================= */
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.about-card {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+}
+
+.about-card h3 {
+  color: #7A1E2B;
+  margin-bottom: 10px;
+}
+
+.about-card p {
+  color: #333;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ================= FOOTER ================= */
+.footer{
+  text-align: center;
+  background-color:brown;
+  color:#FAF7F2;
+  padding:20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.contact-link:hover {
+  color: #ff5722;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+.dropdown {
+  position: relative;
+}
+
+.dropdown > a {
+  display: block;
+}
+
+/* Dropdown menu */
+.dropdown-content {
+  position: absolute;
+  top: 100%;          /* starts just below Places */
+  left: 0;
+
+  background-color: #f5e6d3;
+  min-width: 190px;
+
+  display: none;
+
+  z-index: 100000;    /* ABOVE HEADER */
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+/* Dropdown items */
+.dropdown-content a {
+  display: block;
+  padding: 12px 16px;
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.dropdown-content a:hover {
+  background-color: rgb(36, 117, 187);
+  color: white;
+}
+
+/* Show dropdown */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+  <ul>
+    <li><a href="{{ url_for('home') }}">Home</a></li>
+    <li><a href="{{url_for('about')}}">About</a></li>
+    <li class="dropdown">
+      <a href="#">Places ▾</a>
+      <div class="dropdown-content">
+        <a href="{{ url_for('kerala') }}">Kerala</a>
+        <a href="{{ url_for('punjab') }}">Punjab</a>
+        <a href="{{ url_for('rajasthan') }}">Rajasthan</a>
+        <a href="{{ url_for('tamilnadu') }}">Tamil Nadu</a>
+        <a href="{{ url_for('uttarpradesh') }}">Uttar Pradesh</a>
+        <a href="{{ url_for('uttarakhand') }}">Uttarakhand</a>
+      </div>
+    </li>
+    <li><a href="{{url_for('register')}}">Signup</a></li>
+    <li><a href="{{url_for('login')}}">Login</a></li>
+    <li><a href="{{url_for('contact')}}">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ================= ABOUT SECTION ================= -->
+<section class="about-hero">
+  <div class="hero-overlay">
+    <h1>About Us</h1>
+    <p>
+      Explore Bharat is a cultural tourism web application that digitally presents
+      the rich and diverse heritage of India.
+    </p>
+
+    <div class="about-cards">
+      <div class="about-card">
+        <h3>🌍 Our Vision</h3>
+        <p>
+          To promote cultural awareness by showcasing India’s traditions,
+          festivals, art forms, cuisines, and heritage sites.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3>🎯 Our Purpose</h3>
+        <p>
+          To help users understand not only where to travel,
+          but also why each destination is culturally significant.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3>📚 Who It’s For</h3>
+        <p>
+          Students, tourists, and cultural enthusiasts who want to explore
+          and appreciate India’s living heritage.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+ <div class="footer">
+            <div class="Address">
+        <a 
+  href="https://www.google.com/maps/place/Odalarevu,+Andhra+Pradesh+533210/@16.4265525,81.9542679,14z/data"
+  target="_blank"
+>
+  📍 Odalarevu, Andhra Pradesh, India
+</a>
+      </div> 
+     <div class="Contact Details">
+
+  <!-- Email -->
+  <a href="mailto:explorebharat25@gmail.com" class="contact-link">
+    <img src="../static/email.jpg" class="icon">
+    <span class="icon_name">explorebharat25@gmail.com</span>
+  </a><br><br>
+
+  <!-- WhatsApp / Call -->
+  <a href="https://wa.me/919959264468" target="_blank" class="contact-link">
+    <img src="../static/call.jpg" class="icon">
+    <span class="icon_name">+91 9959264468</span>
+  </a><br><br>
+
+  <!-- Instagram -->
+  <a href="https://www.instagram.com/explorebharat25/" target="_blank" class="contact-link">
+    <img src="../static/insta.jpg" class="icon">
+    <span class="icon_name">explorebharat25</span>
+  </a>
+
+</div>
+      </div>
+
+  
+
+<script>
+/* No JS needed now – kept clean intentionally */
+</script>
+
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tamil nadu Tourism</title>
+
+
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #e0f7fa, #e8f5e9);
+    }
+
+    h1 {
+        text-align: center;
+        padding: 20px;
+    }
+
+    h2 {
+        padding-left: 30px;
+        margin-top: 50px;
+        position: relative;
+    }
+    h2::after{
+      content:"";
+      display:block;
+      width:80px;
+      height:3px;
+      background:#4db6ac;
+      margin-top: 8px;
+    }
+
+    p {
+        padding: 0 30px 20px;
+        line-height: 1.6;
+    }
+    .img-name {
+      text-align:center;
+      font-size: 14px;
+      margin-top: 6px;
+      font-weight:600;
+      color: #333;
+    }
+
+    /* ===== IMAGE GALLERY ===== */
+    .gallery {
+        display: flex;
+        height: 260px;
+        padding: 10px 30px;
+        gap: 8px;
+    }
+
+    .gallery img {
+        width: 50px;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 2px solid #ffd180;
+        transition: all 0.8s ease-in-out;
+        cursor: pointer;
+        filter: saturate(40%);
+    }
+
+    .gallery img:hover {
+        width: 100%;
+        filter: saturate(100%);
+    }
+    /* ===== Breadcrumb (Common for all place pages) ===== */
+.breadcrumb {
+  padding: 15px 30px;
+  font-size: 15px;
+  background-color: #f5f7fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: rgb(36, 117, 187);
+  font-weight: 600;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: #555;
+  font-weight: bold;
+}
+/* ===== Explore navigation (Common for all place pages) ===== */
+.explore-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60px 30px 140px;
+  flex-wrap: wrap;
+}
+
+.explore-more,
+.explore-next,
+.explore-prev {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: rgb(36, 117, 187);
+  transition: color 0.3s ease;
+}
+
+.explore-more:hover,
+.explore-next:hover,
+.explore-prev:hover {
+  color: rgb(28, 95, 155);
+}
+/* ===== Scroll Controls (Hidden by default) ===== */
+.scroll-controls {
+  position: fixed;           /* 🔑 FIX */
+  bottom: 100px;              /* move to bottom */
+  right: 20px;               /* right corner */
+
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 999;              /* always on top */
+}
+.scroll-controls.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.scroll-controls button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+
+  background-color: rgb(36, 117, 187);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.scroll-controls button:hover {
+  background-color: rgb(28, 95, 155);
+}
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+    <!-- Image Lightbox -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+  <span class="close-btn">×</span>
+</div>
+    <div class="breadcrumb">
+  <a href="/homeaccess">Home</a> ›
+  <span>Tamil Nadu</span>
+</div>
+<!-- Breadcrumb END -->
+   <div class="scroll-controls" id="scrollControls">
+  <button onclick="startScroll()">↓ Scroll</button>
+  <button onclick="pauseScroll()">⏸ Pause</button>
+  <button onclick="scrollToTop()">↑ Top</button>
+</div>
+
+<h1>🌴 Tamilnadu🌴</h1>
+
+<h2>Heritage and Historical Sites</h2>
+<p>
+    Historical and heritage places of Tamil Nadu include ancient temples, 
+    monuments, and historic towns that show the state’s rich history and culture. 
+    These places reflect the rule of Chola, Pandya, and Pallava dynasties. They 
+    are known for unique architecture, stone carvings, and religious importance. 
+    These sites are preserved to protect cultural heritage and attract tourists.<br>
+    Mahabalipuram Shore Temple:
+         It is a heritage site because it was built during the Pallava period and shows ancient stone-cut architecture. The temple reflects early South Indian art and history.<br>
+    Meenakshi Amman Temple:
+         This temple is historical due to its long history and grand Dravidian architecture. It represents religious traditions and cultural life of Tamil Nadu.<br>
+    Vivekananda Rock Memorial:
+         It is a heritage monument built to honor Swami Vivekananda. The site has historical and spiritual importance for India.<br>
+    Srirangam Ranganathaswamy Temple:
+         This temple is a heritage site because of its large size and ancient history. It is an important center of Vaishnavite culture and tradition.<br>
+   </p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil1.jpg') }}" alt="Mahabalipuram Shore Temple">
+        <p class="img-name">Mahabalipuram Shore Temple</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil2.jpg') }}" alt="Meenakshi Amman Temple">
+        <p class="img-name" color="black">Meenakshi Amman Temple</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil3.jpg') }}" alt="Vivekananda Rock Memorial">
+        <p class="img-name">Vivekananda Rock Memorial</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil4.jpg') }}" alt="Srirangam Ranganathaswamy Temple">
+        <p class="img-name">Srirangam Ranganathaswamy Temple</p>
+    </div>
+</div>
+
+<h2>Tradition and Customs</h2>
+<p>
+   The traditions and customs of Tamil Nadu are deeply rooted in ancient history, 
+   religion, and culture. People follow age-old practices related to temple rituals, 
+   festivals, dress, and daily life. Traditional clothing, respect for elders, and 
+   strong family values are important customs. These traditions are carefully preserved 
+   and passed down through generations.<br>
+    Ladies Traditional Dress:
+        Women in Tamil Nadu traditionally wear sarees, especially silk sarees like Kanchipuram sarees. The dress reflects elegance, culture, and tradition.<br>
+    Marriage Customs:
+         Tamil Nadu marriages are rich in rituals and traditions. Ceremonies are performed in temples or homes with family blessings.<br>
+    Kavadi Attam:
+         Kavadi Attam is a devotional dance performed during Murugan festivals. Devotees carry kavadi as a symbol of faith and devotion.<br>
+    Jallikattu:
+        Jallikattu is a traditional bull-taming sport of Tamil Nadu. It is celebrated during Pongal and represents bravery and rural culture.<br>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil5.jpg') }}" alt="Ladies Traditional Dress">
+        <p class="img-name">Ladies Traditional Dress</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil6.jpg') }}" alt="Marriage Customs">
+        <p class="img-name" color="black">Marriage Customs</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil7.jpg') }}" alt=" Kavadi Attam">
+        <p class="img-name"> Kavadi Attam</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil8.jpg') }}" alt="Jallikattu">
+        <p class="img-name">Jallikattu</p>
+    </div>
+</div>
+
+<h2>Festivals and Events</h2>
+<p>
+    Festivals and events of Tamil Nadu reflect its agricultural life, religious 
+    devotion, and rich culture. Many festivals are connected to temples, seasons, 
+    and traditional beliefs. They are celebrated with rituals, music, dance, and 
+    community gatherings. These festivals bring people together and help preserve 
+    cultural heritage.<br>
+    Pongal:
+       Pongal is the main harvest festival of Tamil Nadu. It is celebrated to thank the Sun God and farmers for a good harvest.<br>
+    Tamil New Year (Puthandu):
+        Tamil New Year marks the beginning of the Tamil calendar. People start the day with prayers, traditional food, and family gatherings.<br>
+    Chithirai Festival:
+        Chithirai Festival is a famous temple festival celebrated in Madurai. It includes grand processions and religious rituals.<br>
+    Karthigai Pournami:
+        Karthigai Pournami is celebrated by lighting lamps and visiting temples. It symbolizes light, devotion, and spiritual purity.<br>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil9.jpg') }}" alt=" Pongal">
+        <p class="img-name"> Pongal</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil10.jpg') }}" alt=" Tamil New Year (Puthandu)">
+        <p class="img-name" color="black"> Tamil New Year (Puthandu)</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil20.jpg') }}" alt="Chithirai Festival">
+        <p class="img-name">Chithirai Festival</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil12.jpg') }}" alt="Karthigai Pournam">
+        <p class="img-name">Karthigai Pournam</p>
+    </div>
+</div>
+
+<h2>Folkdance and Music</h2>
+<p>
+    Folk dance and cultural events represent the traditional life, beliefs, and 
+    emotions of people. These dances are usually performed during festivals, temple 
+    events, and village celebrations. They use music, rhythm, colorful costumes, 
+    and expressions to tell stories. Folk dances and cultural events help preserve 
+    tradition and bring communities together.<br>
+    Karagattam:
+        Karagattam is a traditional folk dance performed with a pot balanced on the head. It is commonly seen during temple festivals and village celebrations.<br>
+    Therukoothu:
+        Therukoothu is a street theatre art form that combines dance, music, and drama. It tells stories from epics and local traditions.<br>
+    Bharatanatyam:
+        Bharatanatyam is a classical dance form that originated in Tamil Nadu. It uses expressive movements to convey stories and devotion.<br>
+    Devarattam:
+        Devarattam is a traditional male folk dance performed in rural areas. It represents strength, bravery, and community spirit.<br>
+    </p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil13.jpg') }}" alt="Karagattam">
+        <p class="img-name">Karagattam</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil14.jpg') }}" alt="Therukoothu">
+        <p class="img-name" color="black">Therukoothu</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil15.jpg') }}" alt="Bharatanatyam">
+        <p class="img-name">Bharatanatyam</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil24.jpg') }}" alt="Devarattam">
+        <p class="img-name">Devarattam</p>
+    </div>
+</div>
+<h2>Traditional Food and Cuisine</h2>
+<p>
+    Traditional food and cuisine of Tamil Nadu reflect its rich culture, climate, 
+    and lifestyle. The food mainly uses rice, lentils, vegetables, and spices. 
+    Meals are usually served on a banana leaf and are healthy and flavorful. 
+    Traditional cuisine plays an important role in daily life and festivals. 
+    Dishes are often prepared fresh and balanced with taste and nutrition. 
+    Food also reflects hospitality and respect for tradition in Tamil culture.<br>
+    South Indian Thali:
+       South Indian thali is a complete meal served on a banana leaf. It includes rice, sambar, rasam, vegetables, curd, and pickles.<br>
+    Idli & Sambar:
+       Idli and sambar are soft rice cakes served with lentil curry. They are healthy and commonly eaten for breakfast.<br>
+    Chettinad Chicken:
+       Chettinad chicken is a spicy dish made with freshly ground spices. It represents the rich Chettinad cooking style.<br>
+    Sweet Pongal:
+        Sweet pongal is a traditional dessert made with rice, jaggery, and ghee. It is mainly prepared during festivals.<br>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil16.jpg') }}" alt="South Indian Thali">
+        <p class="img-name">South Indian Thali</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil19.jpg') }}" alt="Idli & Sambar">
+        <p class="img-name" color="black">Idli & Sambar</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil17.jpg') }}" alt="Chettinad Chicken">
+        <p class="img-name">Chettinad Chicken</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil18.jpg') }}" alt="Sweet Pongal">
+        <p class="img-name">Sweet Pongal</p>
+    </div>
+</div>
+
+<h2>Handcrafts and Cultural Art Forms</h2>
+<p>
+   Handicrafts and art forms are traditional handmade works created by skilled artisans. 
+   They are made using natural materials and traditional techniques passed down through 
+   generations. These art forms reflect the culture, history, and creativity of a region. 
+   Handicrafts help preserve cultural heritage and provide livelihood to local artisans. 
+   They also support local economies and rural communities. Such art forms play an 
+   important role in promoting cultural tourism.<br>
+    Thanjavur (Tanjavur) Painting:
+        Thanjavur painting is a traditional art form known for rich colors and gold foil work. It mainly shows gods and religious themes.<br>
+    Tamil Nadu Silk Saree:
+        Tamil Nadu silk sarees, especially Kanchipuram silk, are famous for their quality and designs. They are worn during festivals and weddings.<br>
+    Panchaloha Craft:
+        Panchaloha is a traditional metal craft made using five metals. It is mainly used to make temple idols and sculptures.<br>
+    Arts and Crafts:
+       Tamil Nadu has many traditional arts and crafts made by skilled artisans. These crafts reflect culture, creativity, and heritage.<br>
+
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil11.jpg') }}" alt=" Thanjavur (Tanjavur) Painting">
+        <p class="img-name"> Thanjavur (Tanjavur) Painting</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil21.jpg') }}" alt=" Tamil Nadu Silk Saree">
+        <p class="img-name" color="black"> Tamil Nadu Silk Saree</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil22.jpg') }}" alt="Panchaloha Craft">
+        <p class="img-name">Panchaloha Craft</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/tamil23.jpg') }}" alt=" Arts and Crafts">
+        <p class="img-name"> Arts and Crafts</p>
+    </div>
+</div>
+<div class="explore-navigation">
+  <a href="/rajasthan" class="explore-prev">← Previous:</a>
+  <a href="/uttarpradesh" class="explore-next">Next →</a>
+</div>
+<script>
+let scrollInterval = null;
+const controls = document.getElementById("scrollControls");
+
+/* Show buttons only after scrolling */
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 200) {
+    controls.classList.add("show");
+  } else {
+    controls.classList.remove("show");
+  }
+});
+
+function startScroll() {
+  if (scrollInterval) return;
+
+  scrollInterval = setInterval(() => {
+    window.scrollBy(0, 3);
+
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+      pauseScroll();
+    }
+  }, 10);
+}
+
+function pauseScroll() {
+  clearInterval(scrollInterval);
+  scrollInterval = null;
+}
+
+function scrollToTop() {
+  pauseScroll();
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+// Lightbox functions
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+document.querySelectorAll(".gallery img").forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+  });
+});
+
+function closeLightbox() {
+  lightbox.style.display = "none";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>uttaranchal Tourism</title>
+
+
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #e0f7fa, #e8f5e9);
+    }
+
+    h1 {
+        text-align: center;
+        padding: 20px;
+    }
+
+    h2 {
+        padding-left: 30px;
+        margin-top: 50px;
+        position: relative;
+    }
+    h2::after{
+      content:"";
+      display:block;
+      width:80px;
+      height:3px;
+      background:#4db6ac;
+      margin-top: 8px;
+    }
+    p {
+        padding: 0 30px 20px;
+        line-height: 1.6;
+    }
+    .img-name {
+      text-align:center;
+      font-size: 14px;
+      margin-top: 6px;
+      font-weight:600;
+      color: #333;
+    }
+
+    /* ===== IMAGE GALLERY ===== */
+    .gallery {
+        display: flex;
+        height: 260px;
+        padding: 10px 30px;
+        gap: 8px;
+    }
+
+    .gallery img {
+        width: 50px;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 2px solid #ffd180;
+        transition: all 0.8s ease-in-out;
+        cursor: pointer;
+        filter: saturate(40%);
+    }
+
+    .gallery img:hover {
+        width: 100%;
+        filter: saturate(100%);
+    }
+    /* ===== Breadcrumb (Common for all place pages) ===== */
+.breadcrumb {
+  padding: 15px 30px;
+  font-size: 15px;
+  background-color: #f5f7fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: rgb(36, 117, 187);
+  font-weight: 600;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: #555;
+  font-weight: bold;
+}
+/* ===== Explore navigation (Common for all place pages) ===== */
+.explore-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+   margin: 60px 30px 140px;
+  flex-wrap: wrap;
+}
+
+.explore-more,
+.explore-next,
+.explore-prev {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: rgb(36, 117, 187);
+  transition: color 0.3s ease;
+}
+
+.explore-more:hover,
+.explore-next:hover,
+.explore-prev:hover {
+  color: rgb(28, 95, 155);
+}
+/* ===== Scroll Controls (Hidden by default) ===== */
+.scroll-controls {
+  position: fixed;           /* 🔑 FIX */
+  bottom: 100px;              /* move to bottom */
+  right: 20px;               /* right corner */
+
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 999;              /* always on top */
+}
+.scroll-controls.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.scroll-controls button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+
+  background-color: rgb(36, 117, 187);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.scroll-controls button:hover {
+  background-color: rgb(28, 95, 155);
+}
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+    <!-- Image Lightbox -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+  <span class="close-btn">×</span>
+</div>
+    <div class="breadcrumb">
+  <a href="/homeaccess">Home</a> ›
+  <span>Uttarakhand</span>
+</div>
+<!-- Breadcrumb END -->
+   <div class="scroll-controls" id="scrollControls">
+  <button onclick="startScroll()">↓ Scroll</button>
+  <button onclick="pauseScroll()">⏸ Pause</button>
+  <button onclick="scrollToTop()">↑ Top</button>
+</div>
+
+<h1> Uttaranchal</h1>
+
+<h2>Heritage and Historical Sites</h2>
+<p>
+    Historical and heritage places in Uttarakhand are ancient temples, forts, monuments, 
+    and sacred sites that reflect the rich history, culture, and traditions of the region. 
+    These places showcase unique architecture, religious significance, and the lifestyle 
+    of earlier civilizations that lived in the Himalayan region. They play an important 
+    role in preserving cultural identity, promoting tourism, and helping people understand 
+    the spiritual and historical importance of Uttarakhand.<br>
+    Jageshwar Dham:
+        An ancient complex of 100+ stone temples dedicated to Lord Shiva, surrounded by deodar forests. It is a key spiritual and archaeological heritage site.<br>
+    Katarmal Sun Temple:
+        A 9th-century temple built by the Katyuri kings and dedicated to the Sun God. Famous for its unique architecture and historical value.<br>
+    Kedarnath Temple:
+        One of the holiest Shiva temples and part of the Char Dham Yatra. Located in the Himalayas, it holds great religious and cultural importance.<br>
+    Pithoragarh Fort:
+        A historic hilltop fort built by the Gorkhas, reflecting the region’s military past. It also offers panoramic views of Pithoragarh town.<br>
+   </p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta1.jpg') }}" alt="Jageshwar Dham">
+        <p class="img-name">Jageshwar Dham</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta2.jpg') }}" alt="Katarmal Sun Temple">
+        <p class="img-name" color="black">Katarmal Sun Temple</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta3.jpg') }}" alt="Kedarnath Temple">
+        <p class="img-name">Kedarnath Temple</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta4.jpg') }}" alt="Pithoragarh Fort">
+        <p class="img-name">Pithoragarh Fort</p>
+    </div>
+</div>
+
+<h2>Tradition and Customs</h2>
+<p>
+    Traditions and customs in Uttar Pradesh reflect its rich cultural heritage shaped 
+    by ancient history and religious diversity. People follow varied customs related to 
+    festivals, rituals, clothing, food, and daily life across different regions. Festivals
+    such as Holi, Diwali, Eid, and Janmashtami are celebrated with great enthusiasm. These 
+    celebrations show unity in diversity among communities. Traditional art forms like Kathak 
+    dance, folk music, and Banarasi silk weaving add to the cultural richness. Together, 
+    these traditions preserve the cultural identity of Uttar Pradesh.<br>
+    Phool Dei:
+        A traditional spring festival where children place flowers at doorsteps to welcome prosperity and happiness.<br>
+    Traditional Wedding:
+         Uttarakhand weddings are simple yet sacred, performed with Vedic rituals, folk music, and traditional attire.<br>
+    Ganga Aarti:
+         A spiritual ritual performed on the banks of the Ganga River, especially in Haridwar, symbolizing devotion and purity.<br>
+    Chholiya Dance :
+         A famous folk dance of the Kumaon region performed during weddings, showcasing bravery and cultural pride.<br>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta5.jpg') }}" alt=" Phool Dei">
+        <p class="img-name"> Phool Dei</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta6.jpg') }}" alt="Traditional Wedding">
+        <p class="img-name" color="black">Traditional Wedding</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta7.jpg') }}" alt="Ganga Aarti">
+        <p class="img-name">Ganga Aarti</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta8.jpg') }}" alt=" Chholiya Dance">
+        <p class="img-name"> Chholiya Dance</p>
+    </div>
+</div>
+
+<h2>Festivals and Events</h2>
+<p>
+    Festivals and events are special occasions celebrated by communities to express 
+    joy, culture, traditions, and religious beliefs. They mark important times such 
+    as seasonal changes, harvests, historical events, or religious significance. 
+    Festivals bring people together through rituals, music, dance, food, and celebrations, 
+    strengthening social bonds and cultural unity. Events also help preserve traditions, 
+    promote cultural heritage, and pass values from one generation to the next.<br>
+    Harela Festival:
+        An agricultural festival that marks the onset of the monsoon and new harvest. It represents greenery, prosperity, and respect for nature.<br>
+    Phool Dei:
+        A spring festival where children place flowers at doorsteps to wish happiness and good fortune. It reflects innocence and community bonding.<br>
+    Holi:
+        The festival of colors celebrated with joy, music, and traditional Kumaoni Holi songs. It symbolizes unity, happiness, and the arrival of spring.<br>
+    Nanda Devi Raj Jat:
+        A famous religious and cultural pilgrimage dedicated to Goddess Nanda Devi. It is held once every 12 years and showcases Uttarakhand’s deep spiritual heritage.<br>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta9.jpg') }}" alt="Harela Festival">
+        <p class="img-name">Harela Festival</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta10.jpg') }}" alt="Phool Dei">
+        <p class="img-name" color="black">Phool Dei</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta11.jpg') }}" alt="Holi">
+        <p class="img-name">Holi</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta12.jpg') }}" alt=" Nanda Devi Raj Jat">
+        <p class="img-name"> Nanda Devi Raj Jat</p>
+    </div>
+</div>
+
+<h2>Folkdance and Music</h2>
+<p>
+    Folk dance and music in Uttarakhand reflect the daily life, traditions, and cultural 
+    identity of the hill communities. These art forms are performed during festivals, 
+    weddings, and social gatherings. Folk dances are energetic and expressive, while folk 
+    music uses traditional instruments like dhol, damau, and flute. Together, they help 
+    preserve the rich cultural heritage of Uttarakhand and pass traditions from one 
+    generation to the next.<br>
+     Chholiya Dance :
+        A traditional sword dance of the Kumaon region, mainly performed during weddings, symbolizing bravery and cultural pride.
+    Chanchari Dance :
+        A joyful folk dance performed in groups with singing, reflecting daily life and celebrations of hill communities.
+    Dhol–Damau :
+        A famous folk music form using traditional drums, played during festivals, rituals, and social gatherings.
+     Anduri Festival :
+        A unique traditional festival where villagers celebrate together with food sharing, music, and community bonding.  
+    </p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta16.jpg') }}" alt="Chholiya Dance">
+        <p class="img-name">Chholiya Dance</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta13.jpg') }}" alt="Chanchari Dance">
+        <p class="img-name" color="black">Chanchari Dance</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta14.jpg') }}" alt="Dhol–Damau">
+        <p class="img-name">Dhol–Damau</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta15.jpg') }}" alt="Anduri Festival">
+        <p class="img-name">Anduri Festival</p>
+    </div>
+</div>
+<h2>Traditional Food and Cuisine</h2>
+<p>
+    Traditional food and cuisine in Uttarakhand are simple, nutritious, and 
+    closely connected to the region’s climate and lifestyle. The cuisine mainly 
+    uses locally grown grains, pulses, green vegetables, and minimal spices. 
+    Popular dishes are prepared using traditional methods that suit the hilly 
+    environment and promote good health. These foods reflect the culture, daily 
+    life, and sustainable living practices of the people of Uttarakhand.<br>
+    Khatte Lehsuni :
+        A tangy and spicy curry made with garlic and curd, commonly enjoyed with rice in Kumaoni cuisine.<br>
+    Kafuli :
+        A healthy dish prepared using green leafy vegetables like spinach, cooked with local spices and buttermilk.<br>
+    Bhatt ki Churkani :
+        A traditional protein-rich curry made from black soybeans, popular in Kumaon and Garhwal regions.<br>
+    Bal Mithai :
+        A famous sweet of Uttarakhand made from khoya and coated with sugar balls, especially popular in Almora.<br>
+</p>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta17.jpg') }}" alt="Khatte Lehsuni">
+        <p class="img-name">Khatte Lehsuni</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta18.jpg') }}" alt="Kafuli">
+        <p class="img-name" color="black">Kafuli</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta19.jpg') }}" alt="Bhatt ki Churkani">
+        <p class="img-name">Bhatt ki Churkani</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta20.jpg') }}" alt="Bal Mithai">
+        <p class="img-name">Bal Mithai</p>
+    </div>
+</div>
+
+<h2>Handcrafts and Cultural Art Forms</h2>
+<p>
+    Handicrafts and art forms in Uttarakhand are traditional handmade creations that 
+    reflect the culture, lifestyle, and artistic skills of the hill communities. These 
+    crafts are made using locally available materials like wood, wool, bamboo, metal, 
+    and natural colors. Popular art forms include Aipan art, a traditional floor and 
+    wall painting, Ringaal bamboo craft, wood carving, and woolen weaving. These 
+    handicrafts help preserve cultural heritage and provide livelihood to local artisans.<br>
+     Aipan:
+         A traditional decorative art of Uttarakhand made using white rice paste on red backgrounds, commonly drawn during festivals and rituals.<br>
+    Basket Weaving :
+      Handmade baskets created using bamboo and natural fibers, widely used in daily life and rural households.<br>
+    Handcrafted Mats :
+       Mats woven from grass and bamboo, known for durability and eco-friendly nature.<br>
+    Stone Carving :
+        An ancient craft involving detailed carving on stone, seen in temples and heritage structures.<br>
+
+<div class="gallery">
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta21.jpg') }}" alt=" Aipan">
+        <p class="img-name"> Aipan</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta22.jpg') }}" alt="Basket Weaving">
+        <p class="img-name" color="black">Basket Weaving</p> 
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta23.jpg') }}" alt="Handcrafted Mats">
+        <p class="img-name">Handcrafted Mats</p>
+    </div>
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='../static/utta24.jpg') }}" alt="Stone Carving">
+        <p class="img-name">Stone Carving</p>
+    </div>
+</div>
+
+<a href="/homeaccess" class="explore-more">
+  ← Explore Other Places
+</a>
+<script>
+let scrollInterval = null;
+const controls = document.getElementById("scrollControls");
+
+/* Show buttons only after scrolling */
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 200) {
+    controls.classList.add("show");
+  } else {
+    controls.classList.remove("show");
+  }
+});
+
+function startScroll() {
+  if (scrollInterval) return;
+
+  scrollInterval = setInterval(() => {
+    window.scrollBy(0, 3);
+
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+      pauseScroll();
+    }
+  }, 10);
+}
+
+function pauseScroll() {
+  clearInterval(scrollInterval);
+  scrollInterval = null;
+}
+
+function scrollToTop() {
+  pauseScroll();
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+// Lightbox functions
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+document.querySelectorAll(".gallery img").forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+  });
+});
+
+function closeLightbox() {
+  lightbox.style.display = "none";
+}
+</script>
+</body>
+</html>

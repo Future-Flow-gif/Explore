@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | Explore Bharat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<style>
+
+/* ====== YOUR STYLES (UNCHANGED) ====== */
+.contact-section {
+  min-height: 100vh;
+  padding: 50px 60px;
+  background-image: url("../static/back2.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.contact-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.75);
+}
+.title { text-align:center; letter-spacing:8px; margin-bottom:40px; }
+.contact-container { display:flex; gap:40px; position:relative; }
+.contact-left { flex:1; text-align:center; padding-top:60px; }
+.contact-right {
+  flex:1;
+  background:#fff;
+  padding:30px;
+  border-radius:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+.row { display:flex; gap:15px; margin-bottom:15px; }
+.input-box { position:relative; width:100%; }
+.input-box input, textarea {
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:5px;
+}
+textarea { height:120px; resize:none; }
+button {
+  background:orange;
+  color:white;
+  padding:12px 25px;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+}
+nav {
+  background-color: brown;
+  padding:14px 30px;
+}
+nav ul {
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  list-style:none;
+}
+nav ul li a {
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+}
+.dropdown { position:relative; }
+.dropdown-content {
+  display:none;
+  position:absolute;
+  background:#f5e6d3;
+  min-width:180px;
+  z-index:999;
+}
+.dropdown:hover .dropdown-content { display:block; }
+.dropdown-content a {
+  display:block;
+  padding:10px;
+  color:black;
+  text-decoration:none;
+}
+.footer {
+  background:brown;
+  color:white;
+  padding:15px;
+  display:flex;
+  justify-content:space-evenly;
+}
+.flash {
+  text-align:center;
+  color:green;
+  margin-bottom:15px;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+}
+body{
+  font-family: Arial, sans-serif;
+}
+</style>
+
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<nav>
+  <ul>
+    <li><a href="{{ url_for('home') }}">Home</a></li>
+    <li><a href="{{ url_for('about') }}">About</a></li>
+
+    <li class="dropdown">
+      <a href="#">Places ▾</a>
+      <div class="dropdown-content">
+        <a href="{{ url_for('kerala') }}">Kerala</a>
+        <a href="{{ url_for('punjab') }}">Punjab</a>
+        <a href="{{ url_for('rajasthan') }}">Rajasthan</a>
+        <a href="{{ url_for('tamilnadu') }}">Tamil Nadu</a>
+        <a href="{{ url_for('uttarpradesh') }}">Uttar Pradesh</a>
+        <a href="{{ url_for('uttarakhand') }}">Uttarakhand</a>
+      </div>
+    </li>
+
+    <li><a href="{{ url_for('register') }}">Signup</a></li>
+    <li><a href="{{ url_for('login') }}">Login</a></li>
+    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ========== CONTACT SECTION ========== -->
+<section class="contact-section">
+
+  <h2 class="title">CONTACT</h2>
+
+  <!-- FLASH MESSAGE -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for cat, msg in messages %}
+      <div class="flash">{{ msg }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="contact-container">
+
+    <div class="contact-left">
+      <h1>Explore Bharat</h1>
+      <p>Experience India’s living cultural heritage</p>
+    </div>
+
+    <div class="contact-right">
+      <form method="POST" action="{{ url_for('contact') }}">
+
+        <div class="row">
+          <div class="input-box">
+            <input type="text" name="name" placeholder="Name" required>
+          </div>
+          <div class="input-box">
+            <input type="email" name="email" placeholder="Email" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-box">
+            <input type="text" name="phone" placeholder="Phone" required>
+          </div>
+          <div class="input-box">
+            <input type="text" name="days" placeholder="No of Days">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-box">
+            <input type="text" name="address" placeholder="Address">
+          </div>
+        </div>
+
+        <div class="input-box">
+          <textarea name="message" placeholder="Message"></textarea>
+        </div>
+
+        <button type="submit">Send Message</button>
+
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+  <div class="footer">
+      <div>
+            <a href="https://www.google.com/maps/place/Odalarevu,+Andhra+Pradesh+533210/@16.4265525,81.9542679,14z/data" target="_blank">
+                📍 Odalarevu, Andhra Pradesh, India
+            </a>
+      </div>
+        <div>
+            <a href="mailto:explorebharat25@gmail.com" class="contact-link">
+                <img src="{{ url_for('static', filename='email.jpg') }}" class="icon" alt="Email">
+                <span>explorebharat25@gmail.com</span>
+            </a><br><br>
+            <a href="https://wa.me/919959264468" target="_blank" class="contact-link">
+                <img src="{{ url_for('static', filename='call.jpg') }}" class="icon" alt="Phone">
+                <span>+91 9959264468</span>
+            </a><br><br>
+            <a href="https://www.instagram.com/explorebharat25/" target="_blank" class="contact-link">
+                <img src="{{ url_for('static', filename='insta.jpg') }}" class="icon" alt="Instagram">
+                <span>explorebharat25</span>
+            </a>
+        </div>
+  </div>
+
+</body>
+</html>
